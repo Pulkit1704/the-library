@@ -1,4 +1,4 @@
-// book objects will be stored here. 
+// library stores the book elements. 
 var library = [] 
 
 function Book(title, author, num_pages, IsRead){
@@ -8,7 +8,7 @@ function Book(title, author, num_pages, IsRead){
     this.IsRead = IsRead; 
 
     this.info = function(){
-        return `${this.title} ${this.author} ${this.num_pages}.`
+        return `${this.title} ${this.author} ${this.num_pages}`
     }
 
 }
@@ -38,23 +38,30 @@ function make_book_element(Book){
 }
 
 function parseLibrary(library){
-    // parse the library and construct the book element for each book object. 
+    // parse the library and add each element to bookshelf
     
     const bookshelf = document.querySelector("#bookshelf") 
 
     bookshelf.textContent = "" 
     library.forEach(element => {
-        let book_element = make_book_element(element) 
 
-        bookshelf.appendChild(book_element) 
+        bookshelf.appendChild(element) 
     });
 
 }
 
-
 function removeBook(e){
-    //remove the parent element of the button from the dom. 
-    e.target.parentElement.remove()
+    //get the parent element from the dom 
+    let book_element = e.target.parentElement; 
+
+    // remove the entry from the library 
+    for(let i = 0; i<library.length; i++){
+        if(library[i] === book_element){
+            library.splice(i, 1) 
+        }
+    }
+
+    parseLibrary(library) 
 }
 
 function addBook(){
@@ -63,8 +70,9 @@ function addBook(){
     const num_pages = document.querySelector('#num-pages') 
 
     let book = new Book(title.value, author.value, num_pages.value, false) 
+    let book_element = make_book_element(book) 
 
-    library.push(book) 
+    library.push(book_element) 
     parseLibrary(library)
 }
 
