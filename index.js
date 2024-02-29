@@ -77,10 +77,9 @@ function addBook(){
 }
 
 function main(){
-    addBook()
     parseLibrary(library) 
 
-    const add_book = document.querySelector(".book-add")
+    const add_book = document.querySelector("#book-add")
     add_book.addEventListener("click", addBook) 
 
 }  
