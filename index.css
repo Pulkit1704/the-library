@@ -14,7 +14,7 @@
 
 .book{
     margin: 5px; 
-    max-height: fit-content;
+    max-height: 300px;
     min-width: 200px;
     max-width: 400px;
     width: max-content;
@@ -25,18 +25,18 @@
 }
 
 .book > h1{
-    font-size: 2.5rem;
+    font-size: 2rem;
 }
 
 .book > h2{
-    font-size: 2rem;
+    font-size: 1.5rem;
     color: rgb(51, 50, 50);
 }
 
 .book > button{
     background-color: grey;
     height: 50px;
-    width: 100px;
+    min-width: 50%;
     margin: 10px; 
     border-radius: 10px;
 }
