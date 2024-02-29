@@ -1,6 +1,21 @@
 
+h1{
+    text-align: center;
+    font-size: 2.5rem;
+    color:rgb(68, 65, 223);
+}
+
+h2{
+    font-size: 1.7rem;
+    text-align: center;
+}
+
 #bookshelf{
+    border: solid black 2px; 
+    border-radius: 8px;
     margin: 10px;
+    min-height: 300px;
+    max-height: 500px; 
     width: max-content; 
     position:relative; 
     top: 50%; 
@@ -10,6 +25,7 @@
     grid-template-columns: repeat(4, minmax(min-content, 200px));
     padding: 5px; 
     justify-content:center;
+    overflow: scroll; 
 }
 
 .book{
@@ -17,11 +33,12 @@
     max-height: 300px;
     min-width: 200px;
     max-width: 400px;
-    width: max-content;
+    overflow: clip; 
     padding: 2px;
     text-align: center;
     border: 1px solid black; 
     border-radius: 10px;
+    background-color: rgba(65, 201, 235, 0.4) 
 }
 
 .book > h1{
@@ -30,13 +47,45 @@
 
 .book > h2{
     font-size: 1.5rem;
-    color: rgb(51, 50, 50);
 }
 
 .book > button{
-    background-color: grey;
+    background-color: rgb(231, 91, 91);
     height: 50px;
     min-width: 50%;
     margin: 10px; 
     border-radius: 10px;
+}
+
+#book-add{
+    width: 100px;
+    height: 60px;
+    padding: 10px; 
+    margin: 10px; 
+    position: relative; 
+    left: 50%; 
+    top: 50%; 
+    transform: translate(-50%, 0); 
+    border-radius: 10px;
+    font-size: 1.1rem;
+    background-color: rgb(223, 134, 231)
+}
+
+#book-form{
+    max-width: 50%; 
+    position: relative; 
+    left: 50%; 
+    transform: translate(-50%, 0);
+    display: flex; 
+    justify-content: space-around;
+}
+
+#book-form > .field > label{
+    font-size: 1.2rem;
+    display: block; 
+}
+
+#book-form > .field >  input{
+    border-radius: 5px;
+    height: 25px;
 }
