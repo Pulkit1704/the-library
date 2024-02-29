@@ -1,4 +1,4 @@
-// library stores the book elements. 
+
 var library = [] 
 
 function Book(title, author, num_pages, IsRead){
@@ -38,7 +38,6 @@ function make_book_element(Book){
 }
 
 function parseLibrary(library){
-    // parse the library and add each element to bookshelf
     
     const bookshelf = document.querySelector("#bookshelf") 
 
@@ -51,10 +50,9 @@ function parseLibrary(library){
 }
 
 function removeBook(e){
-    //get the parent element from the dom 
+
     let book_element = e.target.parentElement; 
 
-    // remove the entry from the library 
     for(let i = 0; i<library.length; i++){
         if(library[i] === book_element){
             library.splice(i, 1) 
