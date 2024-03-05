@@ -30,11 +30,18 @@ function make_book_element(Book){
     let book_element = document.createElement('div') 
     book_element.setAttribute('class', 'book')
     book_element.setAttribute('id', Book.index)
+
     let title_element = document.createElement('h1') 
+    title_element.textContent = Book.title; 
+
     let author_element = document.createElement('h2') 
+    author_element.textContent = Book.author; 
+
     let num_pages_element = document.createElement('h3') 
+    num_pages_element.textContent = Book.num_pages; 
 
     let check_box_div = document.createElement('div') 
+    
     let read_checkbox = document.createElement('input')
     read_checkbox.setAttribute('type', 'checkbox') 
     read_checkbox.setAttribute('name', 'checkbox') 
@@ -43,7 +50,6 @@ function make_book_element(Book){
     let read_checkbox_label = document.createElement('h3') 
     read_checkbox_label.textContent = "Already read"; 
     read_checkbox_label.setAttribute('for', 'checkbox') 
-
     check_box_div.appendChild(read_checkbox_label) 
     check_box_div.appendChild(read_checkbox) 
 
@@ -51,10 +57,6 @@ function make_book_element(Book){
     remove_button.textContent = "Remove"
     remove_button.setAttribute('class', 'remove-button') 
     remove_button.addEventListener('click', removeBook) 
-
-    title_element.textContent = Book.title; 
-    author_element.textContent = Book.author; 
-    num_pages_element.textContent = Book.num_pages; 
 
     book_element.appendChild(title_element) 
     book_element.appendChild(author_element) 
