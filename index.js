@@ -1,26 +1,30 @@
 
-var library = [] 
+let library = [] 
 
 function Book(title, author, num_pages, IsRead){
     this.title = title;
     this.author = author; 
     this.num_pages = num_pages; 
     this.IsRead = IsRead; 
-
-    this.info = function(){
-        return `${this.title} ${this.author} ${this.num_pages}`
-    }
+    this.index = get_unique_id();
 
 }
 
-function make_book_element(Book){
-    var book_element = document.createElement('div') 
-    book_element.setAttribute('class', 'book')
-    var title_element = document.createElement('h1') 
-    var author_element = document.createElement('h2') 
-    var num_pages_element = document.createElement('h3') 
+function get_unique_id(){
 
-    var remove_button = document.createElement('button') 
+    return Math.random().toString(36); 
+    
+}
+
+function make_book_element(Book){
+    let book_element = document.createElement('div') 
+    book_element.setAttribute('class', 'book')
+    book_element.setAttribute('id', Book.index)
+    let title_element = document.createElement('h1') 
+    let author_element = document.createElement('h2') 
+    let num_pages_element = document.createElement('h3') 
+
+    let remove_button = document.createElement('button') 
     remove_button.textContent = "Remove"
     remove_button.setAttribute('class', 'remove-button') 
     remove_button.addEventListener('click', removeBook) 
@@ -42,19 +46,20 @@ function parseLibrary(library){
     const bookshelf = document.querySelector("#bookshelf") 
 
     bookshelf.textContent = "" 
-    library.forEach(element => {
+    library.forEach(Book => {
 
-        bookshelf.appendChild(element) 
+        bookshelf.appendChild(make_book_element(Book)) 
     });
 
 }
 
 function removeBook(e){
 
-    let book_element = e.target.parentElement; 
+    let book_element = e.target.parentElement.id; 
+    console.log(book_element) 
 
     for(let i = 0; i<library.length; i++){
-        if(library[i] === book_element){
+        if(library[i].index === book_element){
             library.splice(i, 1) 
         }
     }
@@ -68,9 +73,8 @@ function addBook(){
     const num_pages = document.querySelector('#num-pages') 
 
     let book = new Book(title.value, author.value, num_pages.value, false) 
-    let book_element = make_book_element(book) 
 
-    library.push(book_element) 
+    library.push(book) 
     parseLibrary(library)
 }
 
