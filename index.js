@@ -16,6 +16,16 @@ function get_unique_id(){
     
 }
 
+function changeReadStatus(e){
+    let id = e.target.parentElement.parentElement.id; 
+
+    for(let i = 0; i < library.length; i++){
+        if(library[i].index == id){
+            library[i].IsRead = true; 
+        }
+    }
+}
+
 function make_book_element(Book){
     let book_element = document.createElement('div') 
     book_element.setAttribute('class', 'book')
@@ -23,6 +33,19 @@ function make_book_element(Book){
     let title_element = document.createElement('h1') 
     let author_element = document.createElement('h2') 
     let num_pages_element = document.createElement('h3') 
+
+    let check_box_div = document.createElement('div') 
+    let read_checkbox = document.createElement('input')
+    read_checkbox.setAttribute('type', 'checkbox') 
+    read_checkbox.setAttribute('name', 'checkbox') 
+    read_checkbox.addEventListener('change', changeReadStatus)
+    
+    let read_checkbox_label = document.createElement('h3') 
+    read_checkbox_label.textContent = "Already read"; 
+    read_checkbox_label.setAttribute('for', 'checkbox') 
+
+    check_box_div.appendChild(read_checkbox_label) 
+    check_box_div.appendChild(read_checkbox) 
 
     let remove_button = document.createElement('button') 
     remove_button.textContent = "Remove"
@@ -36,6 +59,7 @@ function make_book_element(Book){
     book_element.appendChild(title_element) 
     book_element.appendChild(author_element) 
     book_element.appendChild(num_pages_element) 
+    book_element.appendChild(check_box_div) 
     book_element.appendChild(remove_button) 
 
     return book_element
@@ -55,11 +79,10 @@ function parseLibrary(library){
 
 function removeBook(e){
 
-    let book_element = e.target.parentElement.id; 
-    console.log(book_element) 
+    let book_id = e.target.parentElement.id; 
 
     for(let i = 0; i<library.length; i++){
-        if(library[i].index === book_element){
+        if(library[i].index === book_id){
             library.splice(i, 1) 
         }
     }
